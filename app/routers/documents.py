@@ -9,4 +9,4 @@ async def getTags(document: Document):
   text = document.text
   txtObj = TextBlob(text)
   tags = txtObj.tags
-  return [{"tags": tags}]
+  return {"tags": tags}
