@@ -1,12 +1,16 @@
 -r requirements.txt
 attrs==20.3.0
+dataclasses==0.8
+fastapi==0.63.0
 importlib-metadata==3.10.0
 iniconfig==1.1.1
 packaging==20.9
 pluggy==0.13.1
 py==1.10.0
+pydantic==1.8.1
 pyparsing==2.4.7
 pytest==6.2.2
+starlette==0.13.6
 toml==0.10.2
 typing-extensions==3.7.4.3
 zipp==3.4.1
