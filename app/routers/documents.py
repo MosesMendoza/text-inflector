@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from textblob import TextBlob
-from models import document
+from ..models.document import Document
 
 router = APIRouter()
 
@@ -9,4 +9,4 @@ async def getTags(document: Document):
   text = document.text
   txtObj = TextBlob(text)
   tags = txtObj.tags
-  return [{"document": tags}]
+  return [{"tags": tags}]
