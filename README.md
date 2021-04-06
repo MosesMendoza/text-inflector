@@ -1,5 +1,5 @@
 # text-inflector
-Goal: a simple, lightweight service:
+Goal: a simple, lightweight service for:
 - Generating parts of speech tags for a body of text
 - Obtaining the form of a word given a parts of speech tag
 
