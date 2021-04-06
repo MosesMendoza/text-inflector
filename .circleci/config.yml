@@ -1,0 +1,21 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+
+jobs:
+  test:
+    executor: python/default
+    steps:
+      - checkout
+      - run:
+          command: |
+            sudo python -m venv env
+            . bin/env/activate
+            pip install -r requirements_dev.txt
+            pytest
+
+workflows:
+  main:
+    jobs:
+      - test
