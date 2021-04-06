@@ -5,15 +5,19 @@ orbs:
 
 jobs:
   test:
-    executor: python/default
+    docker:
+      - image: circleci/python:3.6.13
+        environment:
+          NLTK_DATA: /root/nltk_data
     steps:
       - checkout
       - run:
           command: |
             sudo python -m venv env
-            . bin/env/activate
-            pip install -r requirements_dev.txt
-            pytest
+            . env/bin/activate
+            sudo python -m pip install -r requirements_dev.txt
+            sudo python -m textblob.download_corpora
+            sudo pytest
 
 workflows:
   main:
