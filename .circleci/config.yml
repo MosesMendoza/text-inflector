@@ -13,11 +13,11 @@ jobs:
       - checkout
       - run:
           command: |
-            sudo python -m venv env
+            python -m venv env
             . env/bin/activate
-            sudo python -m pip install -r requirements_dev.txt
-            sudo python -m textblob.download_corpora
-            sudo pytest
+            python -m pip install -r requirements_dev.txt
+            python -m textblob.download_corpora
+            pytest
 
 workflows:
   main:
