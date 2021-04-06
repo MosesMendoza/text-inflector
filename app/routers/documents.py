@@ -4,7 +4,7 @@ from ..models.document import Document
 
 router = APIRouter()
 
-@router.post("/tags", tags=["users"])
+@router.post("/tags", tags=["documents"])
 async def getTags(document: Document):
   text = document.text
   txtObj = TextBlob(text)
