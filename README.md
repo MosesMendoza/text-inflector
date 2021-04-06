@@ -54,3 +54,19 @@ Get the Parts of Speech tags for a given body of text. See the [Penn treebank pa
 Example:
 
     curl -X POST -H "Content-Type: application/json" -d '{"text": "I am a pear"}' http://localhost:1234/tags
+
+### Inflections
+Get the inflected form of a word corresponding to a [Part of Speech](https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html) tag. Note that the supplied JSON body has required key (object) names (`word` and `pos`) per FastAPIs `Body` module.
+
+    Endpoint: /inflections
+    Action: POST
+    Example JSON body: '{
+      "word": {  "text": "pear" },
+      "pos": { "tag": "NNS" }
+    }'
+    Expected Response:
+      {'inflection': ['pears']}
+
+Example:
+
+  curl -X POST -H "Content-Type: application/json" -d '{ "word": {  "text": "pear" }, "pos": { "tag": "NNS" } }' http://localhost:1234/inflections

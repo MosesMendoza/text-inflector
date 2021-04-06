@@ -1,12 +1,21 @@
-from fastapi import APIRouter
+from fastapi import Body, APIRouter
 from textblob import TextBlob
-from ..models.document import Document
+from lemminflect import getInflection
+from ..models.document import Document, Word
+from ..models.part_of_speech import PartOfSpeech
 
 router = APIRouter()
 
 @router.post("/tags", tags=["documents"])
-async def getTags(document: Document):
+async def postTags(document: Document):
   text = document.text
   txtObj = TextBlob(text)
   tags = txtObj.tags
   return {"tags": tags}
+
+@router.post("/inflections", tags=["documents"])
+async def postInflection(word: Word, pos: PartOfSpeech = Body(...)):
+  text = word.text
+  tag = pos.tag
+  inflection = getInflection(text, tag)
+  return { "inflection": inflection }
