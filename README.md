@@ -69,4 +69,4 @@ Get the inflected form of a word corresponding to a [Part of Speech](https://www
 
 Example:
 
-  curl -X POST -H "Content-Type: application/json" -d '{ "word": {  "text": "pear" }, "pos": { "tag": "NNS" } }' http://localhost:1234/inflections
+    curl -X POST -H "Content-Type: application/json" -d '{ "word": {  "text": "pear" }, "pos": { "tag": "NNS" } }' http://localhost:1234/inflections
