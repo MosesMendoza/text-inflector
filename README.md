@@ -4,8 +4,9 @@
 Goal: a simple, lightweight service for:
 - Generating parts of speech tags for a body of text
 - Obtaining the form of a word given a parts of speech tag
+- Obtaining basic tokenization of a given body of text (words, sentences)
 
-This service doesn't have any logic other than to wrap APIs from TextBlob and Lemminflect. This runs [textblob](https://github.com/sloria/TextBlob) and [lemminflect](https://github.com/bjascob/LemmInflect) as APIs behind FastAPI in a docker container. Currently the only supported action from textblob is `tags` but more may be added. The only supported action from lemminflect is `getInflection`. Contributions are welcome. Note this doesn't do anything with certs/ssl/tls/https. Setting up a cluster for ssl termination isn't in scope here.
+This service doesn't have any logic other than to wrap APIs from TextBlob and Lemminflect. This runs [textblob](https://github.com/sloria/TextBlob) and [lemminflect](https://github.com/bjascob/LemmInflect) as APIs behind FastAPI in a docker container. The supported actions from textblob are `tags`, `words`, and `sentences`, but more may be added. The supported action from lemminflect is `getInflection`. Contributions are welcome. Note this doesn't do anything with certs/ssl/tls/https. Setting up a cluster for ssl termination isn't in scope here.
 
 ## Container
 Builds on the FastAPI official container image from https://hub.docker.com/r/tiangolo/uvicorn-gunicorn-fastapi/ per the FastAPI [deployment docs](https://fastapi.tiangolo.com/deployment/docker) for Python 3.6.
@@ -51,7 +52,7 @@ Get the Parts of Speech tags for a given body of text. See the [Penn treebank pa
     Action: POST
     Example JSON body: '{"text": "I am a pear" }'
     Expected Response:
-      { "tags": "[["I", "PRP"], ["am", "VBP"], ["a", "DT"], ["pear", "NN"]] }
+      { "tags": [["I", "PRP"], ["am", "VBP"], ["a", "DT"], ["pear", "NN"]] }
 
 Example:
 
@@ -72,3 +73,16 @@ Get the inflected form of a word corresponding to a [Part of Speech](https://www
 Example:
 
     curl -X POST -H "Content-Type: application/json" -d '{ "word": {  "text": "pear" }, "pos": { "tag": "NNS" } }' http://localhost:1234/inflections
+
+### Sentences
+Get a list of sentences (strings) in a given body of text
+    Endpoint: /sentences
+    Action: POST
+    Example JSON body:
+      '{ "text": "I am a pear." }'
+    Expected Response:
+      '{ "sentences": ["I am a pear."] }'
+
+Example:
+
+    curl -X POST -H "Content-Type: application/json" -d '{"text": "I am a pear."}' http://localhost:1234/tokenizations
