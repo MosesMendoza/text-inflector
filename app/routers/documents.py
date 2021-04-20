@@ -11,7 +11,7 @@ async def postTags(document: Document):
   text = document.text
   txtObj = TextBlob(text)
   tags = txtObj.tags
-  return {"tags": tags}
+  return { "tags": tags }
 
 @router.post("/inflections", tags=["documents"])
 async def postInflection(word: Word, pos: PartOfSpeech = Body(...)):
@@ -19,3 +19,12 @@ async def postInflection(word: Word, pos: PartOfSpeech = Body(...)):
   tag = pos.tag
   inflection = getInflection(text, tag)
   return { "inflection": inflection }
+
+@router.post("/sentences", tags=["documents"])
+async def postInflection(document: Document):
+  text = document.text
+  txtObj = TextBlob(text)
+  sentences = []
+  for sentence in txtObj.sentences:
+    sentences.append(sentence.string)
+  return { "sentences": sentences }
