@@ -1,4 +1,4 @@
-#  Note: Portions of this Dockerfile were taken from repositories licensed
+#  Note: The code in this directory was copied from repositories licensed
 #  under the following license and copyright.
 #  Repositories:
 #     https://github.com/tiangolo/uvicorn-gunicorn-docker
@@ -26,37 +26,3 @@
 #  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 #  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 #  THE SOFTWARE.
-
-
-FROM python:3.9.4
-
-RUN pip install --no-cache-dir "uvicorn[standard]" gunicorn
-
-COPY ./docker-support/start.sh /start.sh
-RUN chmod +x /start.sh
-
-COPY ./docker-support/gunicorn_conf.py /gunicorn_conf.py
-
-COPY ./docker-support/start-reload.sh /start-reload.sh
-RUN chmod +x /start-reload.sh
-
-COPY ./docker-support/app /app
-WORKDIR /app
-
-ENV PYTHONAPP=/app
-
-EXPOSE 80
-
-CMD ["/start.sh"]
-
-RUN pip install --no-cache-dir fastapi
-
-COPY requirements.txt /
-
-RUN pip install -r /requirements.txt
-
-ENV NLTK_DATA=/
-# Sorry container size
-RUN python -m textblob.download_corpora
-
-COPY ./app /app/app

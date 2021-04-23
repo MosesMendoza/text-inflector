@@ -1,8 +1,8 @@
 click==7.1.2
 joblib==1.0.1
 lemminflect==0.2.2
-nltk==3.5
-numpy==1.19.5
-regex==2021.3.17
+nltk==3.6.2
+numpy==1.20.2
+regex==2021.4.4
 textblob==0.15.3
-tqdm==4.59.0
+tqdm==4.60.0
