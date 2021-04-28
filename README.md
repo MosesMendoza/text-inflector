@@ -9,6 +9,9 @@ Goal: a simple, lightweight service for:
 This service doesn't have any logic other than to wrap APIs from TextBlob and Lemminflect. This runs [textblob](https://github.com/sloria/TextBlob) and [lemminflect](https://github.com/bjascob/LemmInflect) as APIs behind FastAPI in a docker container. The supported actions from textblob are `tags`, and `sentences`, but more may be added. The supported action from lemminflect is `getInflection`. Contributions are welcome. Note this doesn't do anything with certs/ssl/tls/https. Setting up a cluster for ssl termination isn't in scope here.
 
 ## Container
+[temporary update]
+The container logic has been rewritten to craft together a working version on Python 3.9. The previous logic (referenced below) uses the official container image(s) from FastAPI but Python 3.9 hasn't been added yet. As a result, building the container per instructions below will create a Python 3.9-based container. Documentation and code will be returned to the official versions after support is released.
+
 Builds on the FastAPI official container image from https://hub.docker.com/r/tiangolo/uvicorn-gunicorn-fastapi/ per the FastAPI [deployment docs](https://fastapi.tiangolo.com/deployment/docker) for Python 3.6.
 
 Current image tag: python3.7-2020-12-19
