@@ -30,6 +30,11 @@
 
 FROM python:3.9.4
 
+ARG API_LISTEN_PORT
+ENV API_LISTEN_PORT=${API_LISTEN_PORT:-80}
+
+RUN echo "Configuring service to listen on port '${API_LISTEN_PORT}'"
+
 RUN pip install --no-cache-dir "uvicorn[standard]" gunicorn
 
 COPY ./docker-support/start.sh /start.sh
