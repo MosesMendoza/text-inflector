@@ -3,6 +3,7 @@ from textblob import TextBlob
 from lemminflect import getInflection
 from ..models.document import Document, Word
 from ..models.part_of_speech import PartOfSpeech
+import time
 
 router = APIRouter()
 
@@ -15,16 +16,22 @@ async def postTags(document: Document):
 
 @router.post("/inflections", tags=["documents"])
 async def postInflection(word: Word, pos: PartOfSpeech = Body(...)):
+  start = time.time()
   text = word.text
   tag = pos.tag
   inflection = getInflection(text, tag)
+  end = time.time()
+  print("/inflections : " + str(round((end - start), 3)))
   return { "inflection": inflection }
 
 @router.post("/sentences", tags=["documents"])
 async def postInflection(document: Document):
+  start = time.time()
   text = document.text
   txtObj = TextBlob(text)
   sentences = []
   for sentence in txtObj.sentences:
     sentences.append(sentence.string)
+  end = time.time()
+  print("/sentences : " + str(round((end - start), 3)))
   return { "sentences": sentences }
