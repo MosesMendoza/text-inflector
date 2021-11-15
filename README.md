@@ -65,6 +65,8 @@ Current Lemminflect version: 0.2.2
 
 ## Build/run locally
 
+WARNING DO NOT USE THIS TO BUILD FOR DEPLOY TO AWS SEE README IN EVOLVED REPO FOR INSTRUCTIONS
+
     docker build -t text-inflector-image .
     docker run -d --name text-inflector -p 1234:80 text-inflector-image // (replace 1234 with the port you want the container to expose)
 
