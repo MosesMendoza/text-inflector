@@ -30,6 +30,9 @@
 
 FROM python:3.9.4
 
+# This is set when building for an environment like AWS where the port needs to
+# be something different, and gets baked into the container. Its used by the
+# gunicorn server to start up
 ARG API_LISTEN_PORT
 ENV API_LISTEN_PORT=${API_LISTEN_PORT:-80}
 
@@ -50,6 +53,8 @@ WORKDIR /app
 
 ENV PYTHONAPP=/app
 
+# This expose is only used when running as a local container and
+# API_LISTEN_PORT is not supplied
 EXPOSE 80
 
 CMD ["/start.sh"]
