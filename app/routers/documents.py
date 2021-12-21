@@ -28,3 +28,7 @@ async def postInflection(document: Document):
   for sentence in txtObj.sentences:
     sentences.append(sentence.string)
   return { "sentences": sentences }
+
+@router.get("/status")
+async def getStatus():
+  return
