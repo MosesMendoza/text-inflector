@@ -53,3 +53,7 @@ def test_post_inflect_without_text_field_returns_422():
 def test_get_inflect_returns_405():
   response = client.get("/inflections")
   assert response.status_code == 405
+
+def get_status_returns_200():
+  response = client.get("/status")
+  assert response.status_code == 200
