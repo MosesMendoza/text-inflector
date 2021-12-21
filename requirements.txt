@@ -3,6 +3,7 @@ click==8.0.3
 fastapi==0.70.1
 idna==3.3
 joblib==1.1.0
+lemminflect==0.2.2
 nltk==3.6.6
 numpy==1.21.5
 pydantic==1.8.2
