@@ -2,6 +2,13 @@ import json
 import multiprocessing
 import os
 
+# override pre_request hook to silence /status route
+def pre_request(worker, req):
+  if req.path == '/status'
+    return
+  # this is the default
+  worker.log.debug("%s %s" % (req.method, req.path))
+
 workers_per_core_str = os.getenv("WORKERS_PER_CORE", "1")
 max_workers_str = os.getenv("MAX_WORKERS")
 use_max_workers = None
