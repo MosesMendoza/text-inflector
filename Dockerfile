@@ -28,7 +28,7 @@
 #  THE SOFTWARE.
 
 
-FROM python:3.9.4
+FROM python:3.9.9
 
 # This is set when building for an environment like AWS where the port needs to
 # be something different, and gets baked into the container. Its used by the
