@@ -18,8 +18,22 @@ jobs:
             python -m pip install -r requirements_dev.txt
             python -m textblob.download_corpora
             pytest
+  deploy:
+    docker:
+      - image: circleci/python:3.9.2
+    steps:
+      - checkout
+      - run: sleep 3
 
 workflows:
   main:
     jobs:
       - test
+      - hold:
+          type: approval
+          requires:
+            - test
+      - deploy:
+          context: test-context
+          requires:
+            - hold
